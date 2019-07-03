@@ -80,9 +80,23 @@ _(사진 : 부트스트랩 UI)_
 ~~(22차 수정본 끝에 완성된 DB구조)~~
 
 
-### 3. Spring - R - DB  연동
+### 3. Spring 페이지 구현
+![movielist](https://user-images.githubusercontent.com/35910177/60558025-9e615900-9d82-11e9-9f4e-d22a64edb79b.png)
 
-### 4.
+- 사용 기술
+![OracleQuery](https://img.shields.io/badge/Oracle-Query-red.svg)
+![OracleView](https://img.shields.io/badge/Oracle-View-red.svg)
+![OracleSubQuery](https://img.shields.io/badge/Oracle-SubQuery-red.svg)
+![OracleView](https://img.shields.io/badge/Oracle-View-red.svg)
+![MyBatisResultMap](https://img.shields.io/badge/MyBatis-ResultMap-lightgrey.svg)
+![MyBatisDynamicQuery](https://img.shields.io/badge/MyBatis-DynamicQuery-lightgrey.svg)
+![JavaScriptaJAX](https://img.shields.io/badge/JavaScript-Ajax-yellow.svg)
+![SpringJSOUP](https://img.shields.io/badge/Spring-Jsoup-brightgreen.svg)
+![SpringAOP](https://img.shields.io/badge/Spring-AOP-brightgreen.svg)
+
+
+### 4. Spring - R - DB  연동
+ 
 
 ### 5. 기타 요소
 
