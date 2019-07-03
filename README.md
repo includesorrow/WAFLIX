@@ -48,7 +48,7 @@ WAFLIX란 **Spring을 이용해서 구현한 영화 스트리밍 사이트**입�
 
 ## 프로젝트 중 직접구현한 내용
 
-1. **부트스트랩** (![BOOTSTRAP](https://user-images.githubusercontent.com/35910177/60500978-3107e680-9cf6-11e9-9bd7-60fa478ecb1b.png))
+### 부트스트랩 (![BOOTSTRAP](https://user-images.githubusercontent.com/35910177/60500978-3107e680-9cf6-11e9-9bd7-60fa478ecb1b.png))
 
 
 ![dashio-bootstrap-admin-template](https://user-images.githubusercontent.com/35910177/60500754-d8384e00-9cf5-11e9-8df5-775be13d168a.jpg)
@@ -68,7 +68,7 @@ _(사진 : 부트스트랩 UI)_
 
 
 
-2. **DB 관리자 (DBA)**
+### DB 관리자 (DBA)
 
 프로젝트를 진행하면서 Oracle DB 구축을 필요로 했고, 그에 따라서 DB를 담당할 DB관리자인 DBA가 필요했습니다. 
 
@@ -80,11 +80,11 @@ _(사진 : 부트스트랩 UI)_
 ~~(22차 수정본 끝에 완성된 DB구조)~~
 
 
-3. **Spring - R - DB  연동** 
+### Spring - R - DB  연동
 
-4. 
+###  
 
-5. 기타 요소
+### 기타 요소
 
 Slack을 활용한 자료 및 기술 정보 공유 
 ![slack](https://user-images.githubusercontent.com/35910177/60557438-7a9d1380-9d80-11e9-884f-0cf24a7cc3ba.PNG)
