@@ -11,7 +11,7 @@ WAFLIX란 **Spring을 이용해서 구현한 영화 스트리밍 사이트**입�
 
 ## 프로젝트 정보
 
-- 프로젝트 기간 : 2019.3.8 ~ 4.2 (근무일수 : 18일)
+- 프로젝트 기간 : 2019.3.8 ~ 4.2 (근무일수 기준 18일)
 
 - 프로젝트 인원 : 7명
 
@@ -43,39 +43,53 @@ WAFLIX란 **Spring을 이용해서 구현한 영화 스트리밍 사이트**입�
 ![JavaScriptjstl](https://img.shields.io/badge/JavaScript-jstl-yellow.svg)
 
 ## 프로젝트 PPT
+
 [여기에 다 있습니다.](https://github.com/includesorrow/WAFLIX/blob/master/MiddleProject_PPT_A%EC%A1%B0.pptx)
 
-## 프로젝트 중 구현한 내용
+## 프로젝트 중 직접구현한 내용
 
 1. **부트스트랩** (![BOOTSTRAP](https://user-images.githubusercontent.com/35910177/60500978-3107e680-9cf6-11e9-9bd7-60fa478ecb1b.png))
 
 
 ![dashio-bootstrap-admin-template](https://user-images.githubusercontent.com/35910177/60500754-d8384e00-9cf5-11e9-8df5-775be13d168a.jpg)
-_부트스트랩 UI_
+_(사진 : 부트스트랩 UI)_
 
 
-부트스트랩을 사용한 이유로는
+해당 프로젝트에서 부트스트랩을 사용한 이유로는
 - HTML 디자인 시간 단축
-- 관리자페이지에서 차트 자동구현
-- 메뉴를 편하게 보여주기
-
-위해서 부트스트랩을 해당 프로젝트 내에 적용시키는 작업을 하였습니다. ~~(부트스트랩 적용시키니 한글깨져서 고생함)~~
+- 관리자페이지 등 차트 자동구현
 
 
+위해서 부트스트랩을 해당 프로젝트 내에 적용을 하는 작업을 하고 같은 팀프로젝트원들에게 사용법을 설명하였습니다. 
 
 
 
 
 
-2. **Oracle DB 관리자 (DBA)**
 
-프로젝트를 진행하면서 Oracle DB구축을 하고, DB를 담당할 DB관리자인 DBA가 필요했습니다. 
 
-2016년에 OracleDB관련 수업을 들은 제가 DBA를 담당하기로 하였습니다.
+2. **DB 관리자 (DBA)**
 
-DBA로써 DB 설계 및 DB Column 수정 등 DB 관리자로써 전체적인 부분을 담당하였습니다.
+프로젝트를 진행하면서 Oracle DB 구축을 필요로 했고, 그에 따라서 DB를 담당할 DB관리자인 DBA가 필요했습니다. 
+
+2017년에 멀티캠퍼스에서 Oracle DB,SQL 수업을 들었던 저는 DBA를 담당하기로 했습니다.
+
+해당 프로젝트에서 DB를 처음에 EXERD로 구성하고 프로젝트 진행 중 필요에 따라서 TABLE Column 수정, Primary Key 설정, Unique 설정, Join 등 DB에 대한 부분을 담당하였습니다.
 
 ![DB 구조](https://user-images.githubusercontent.com/35910177/60503887-8e526680-9cfb-11e9-8016-623f56ba3f09.png)
 ~~(22차 수정본 끝에 완성된 DB구조)~~
 
+
+3. **Spring - R - DB  연동** 
+
+4. 
+
+5. 기타 요소
+
+Slack을 활용한 자료 및 기술 정보 공유 
+![slack](https://user-images.githubusercontent.com/35910177/60557438-7a9d1380-9d80-11e9-884f-0cf24a7cc3ba.PNG)
+
+
+
+회의록 작성
 
