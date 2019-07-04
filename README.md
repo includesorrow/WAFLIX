@@ -317,10 +317,11 @@ co.matrix <- freq.words %*% t(freq.words)  #행렬의 곱셈을 이용해 Term D
 
 ### 5. 기타 요소
 
-Slack을 활용한 자료 및 기술 정보 공유 
-![slack](https://user-images.githubusercontent.com/35910177/60557438-7a9d1380-9d80-11e9-884f-0cf24a7cc3ba.PNG)
+- Slack을 활용한 자료 및 기술 정보 공유 
+ 
+ ![slack](https://user-images.githubusercontent.com/35910177/60557438-7a9d1380-9d80-11e9-884f-0cf24a7cc3ba.PNG)
 
-Github를 활용한 백업본 저장
+- Github를 활용한 백업본 저장
 
 ![image](https://user-images.githubusercontent.com/35910177/60640841-118ecc00-9e64-11e9-9ec8-af91b7093b2c.png)
 
