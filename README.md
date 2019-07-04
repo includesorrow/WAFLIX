@@ -80,7 +80,7 @@ _(사진 : 부트스트랩 UI)_
 ~~(22차 수정본 끝에 완성된 DB구조)~~
 
 
-### 3. Spring 페이지 구현
+### 3. Spring 관리자 페이지 구현
 ![movielist](https://user-images.githubusercontent.com/35910177/60558025-9e615900-9d82-11e9-9f4e-d22a64edb79b.png)
 
 - 사용 기술
@@ -93,6 +93,57 @@ _(사진 : 부트스트랩 UI)_
 ![JavaScriptaJAX](https://img.shields.io/badge/JavaScript-Ajax-yellow.svg)
 ![SpringJSOUP](https://img.shields.io/badge/Spring-Jsoup-brightgreen.svg)
 ![SpringAOP](https://img.shields.io/badge/Spring-AOP-brightgreen.svg)
+
+- 영화 리스트
+
+ 현재 DB에 저장되어 있는 영화 리스트를 출력해주며, 검색기능을 넣어 DB에 있는 영화 검색이 가능하게 구현하였습니다.
+ 
+ 또한 영화 가격 수정을 넣어 관리자가 영화의 가격을 실시간으로 수정이 가능하게 해주며, 영화 활성화 상태를 변경하면 페이지에서 출력이 True,False로 전환할 수도 있고 영화 가격을 전체적으로 업데이트하여 관리자가 원하는대로 영화 가격을 업데이트하게 해주는 기능을 넣었습니다.
+ 
+ - 해당 코드 (일부)
+ ```
+ 
+	@PostMapping("/blank5")
+	public String searchTitle5(String searchType,String search,Model m) {
+		Map<String, String> map= new HashMap<String, String>();
+		map.put("searchType", searchType);
+		map.put("search", search); 
+		System.out.println(search);
+		m.addAttribute("list",dao.getMovieList3(map)); 
+		m.addAttribute("searchType",searchType);
+		return "blank5";
+	}
+	//검색에 값을 받기 위한 Post방식의 Mapping
+ ```
+ ```
+ 	public List<MyListsVO> getMyMovieList(String userId){
+		return ss.selectList("mymovielist.getMovieList",userId);
+	}
+ ```
+ ```
+ <select id="movielist" parameterType="hashmap"
+  	resultType="movievo">
+  		select * from movie
+  	
+  			 </select>
+  			
+  			 <select id="movietitlelist" parameterType="hashmap"
+  			 resultType="movievo">
+  			 select movie_title from movie
+  			 where movie_title like '%' || #{movie_title} || '%'
+  			 
+  			 </select>
+  			 
+  			 <!-- 차트를 위한 가격리스트 -->
+  			 <select id="price" resultType="int" parameterType="list">
+  	select count(*)
+         from movie
+         group by movie_price
+         order by movie_price asc
+ 
+</select>
+ ```
+
 
 
 ### 4. Spring - R - DB  연동
