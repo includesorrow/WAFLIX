@@ -26,7 +26,6 @@ WAFLIX란 **Spring을 이용해서 구현한 영화 스트리밍 사이트**입�
 ![OracleTrigger](https://img.shields.io/badge/Oracle-Trigger-red.svg)
 ![OracleTransaction](https://img.shields.io/badge/Oracle-Transaction-red.svg)
 
-
 ![SpringFileUpload](https://img.shields.io/badge/Spring-File%20Upload-brightgreen.svg)
 ![SpringPOI](https://img.shields.io/badge/Spring-POI-brightgreen.svg)
 ![SpringRestfulAPI](https://img.shields.io/badge/Spring-RestfulAPI-brightgreen.svg)
@@ -54,14 +53,9 @@ WAFLIX란 **Spring을 이용해서 구현한 영화 스트리밍 사이트**입�
 ![dashio-bootstrap-admin-template](https://user-images.githubusercontent.com/35910177/60500754-d8384e00-9cf5-11e9-8df5-775be13d168a.jpg)
 _(사진 : 부트스트랩 UI)_
 
+이번 WAFLIX프로젝트에서 영화페이지 및 관리자페이지 둘 다 적용이 가능한 부트스트랩을 적용시켜 해당 프로젝트 디자인 설정 기간을 단축시키고자 부트스트랩을 적용하였습니다.
 
-해당 프로젝트에서 부트스트랩을 사용한 이유로는
-- HTML 디자인 시간 단축
-- 관리자페이지 등 차트 자동구현
-
-
-위해서 부트스트랩을 해당 프로젝트 내에 적용을 하는 작업을 하고 같은 팀프로젝트원들에게 사용법을 설명하였습니다. 
-
+또한 부트스트랩을 스프링에 적용한 후 같은 조원에게 부트스트랩 사용법을 알려주어 프로젝트 인원들이 부트스트랩을 사용하는데 불편함이 없도록 하였습니다.
 
 
 
@@ -147,7 +141,39 @@ _(사진 : 부트스트랩 UI)_
 
 
 ### 4. Spring - R - DB  연동
- 
+
+구상도
+
+![image](https://user-images.githubusercontent.com/35910177/60637446-6bd46080-9e55-11e9-8aa4-4bff79ae8433.png)
+
+1. 군집화
+
+머신러닝 기술을 적용하기 위해서 스프링에서 R을 연동하고, R에서는 Oracle DB에 접속하여 데이터를 가지고 온 후, 그 데이터를 군집화인 K-Means를 적용하여 회원의 군집을 정하는 작업을 하였습니다.
+
+- 해당 코드 (일부)
+```
+R CODE
+
+library(DBI)
+library(rJava)
+library(RJDBC)
+options(java.parameters='-Xmx32g') # rJava의 memory limit default를 512MB->32GB로 확장
+connect.drv <- JDBC('oracle.jdbc.driver.OracleDriver', 'C:/bigdata/KOSTA/KOSTA/Oracle/File/lib/ojdbc6.jar') # jdbc 경로
+connect.info <- dbConnect(connect.drv, paste('jdbc:oracle:thin:@', connect.db[[1]]$host[connect.db$connect.to], ':', connect.db[[1]]$port[connect.db$connect.to], ':', connect.db[[1]]$sid[connect.db$connect.to], sep=''), connect.db[[1]]$username[connect.db$connect.to], connect.db[[1]]$password[connect.db$connect.to])
+# 주의: 쿼리 맨 끝의 세미콜론(;)은 삭제할 것
+query.data <- dbGetQuery(connect.info, "SELECT * FROM movie")
+#dbDisconnect(connect.info) # DB 접속 종료
+head(query.data, n=5)
+format(object.size(query.data), units='auto')
+gc(verbose=TRUE) # 메모리 Garbage Collection (큰 object 삭제 후 실행하면 메모리를 OS에 돌려주는 역할을 함)
+```
+
+2. 댓글을 KoNLP를 통하여 태그화
+
+WAFLIX 페이지에서 댓글을 가져와서 태그화를 해야하는 작업이 필요했습니다.
+
+하지만 
+
 
 ### 5. 기타 요소
 
