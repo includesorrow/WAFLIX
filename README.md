@@ -66,9 +66,9 @@ _(사진 : 부트스트랩 UI)_
 
 프로젝트를 진행하면서 Oracle DB 구축을 필요로 했고, 그에 따라서 DB를 담당할 DB관리자인 DBA가 필요했습니다. 
 
-2017년에 멀티캠퍼스에서 Oracle DB,SQL 수업을 들었던 저는 DBA를 담당하기로 했습니다.
+그래서 프로젝트 인원 중 기존에 교육을 들은 경험이 있는 제가 DBA를 담당하기로 했습니다.
 
-해당 프로젝트에서 DB를 처음에 EXERD로 구성하고 프로젝트 진행 중 필요에 따라서 TABLE Column 수정, Primary Key 설정, Unique 설정, Join 등 DB에 대한 부분을 담당하였습니다.
+해당 프로젝트에서 DB를 EXERD를 통해서 구성 및 생성하고 프로젝트 진행 중 필요에 따라서 TABLE 수정, Primary Key 설정, Unique 설정, Join 등 DB에 대한 부분을 담당하였습니다.
 
 ![DB 구조](https://user-images.githubusercontent.com/35910177/60503887-8e526680-9cfb-11e9-8016-623f56ba3f09.png)
 ~~(22차 수정본 끝에 완성된 DB구조)~~
