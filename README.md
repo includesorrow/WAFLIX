@@ -99,6 +99,8 @@ _(사진 : 부트스트랩 UI)_
  - 해당 코드 (일부)
  ```
  
+ 동작 순서 : Client -> blank5.jsp  ->  DefaultController  ->  DynamicExampleDao  ->  movieMapper.xml  ->  DefaultController -> blank5.jsp
+
 	@PostMapping("/blank5")
 	public String searchTitle5(String searchType,String search,Model m) {
 		Map<String, String> map= new HashMap<String, String>();
@@ -117,30 +119,101 @@ _(사진 : 부트스트랩 UI)_
 	}
  ```
  ```
- <select id="movielist" parameterType="hashmap"
-  	resultType="movievo">
-  		select * from movie
-  	
-  			 </select>
-  			
-  			 <select id="movietitlelist" parameterType="hashmap"
-  			 resultType="movievo">
-  			 select movie_title from movie
-  			 where movie_title like '%' || #{movie_title} || '%'
-  			 
-  			 </select>
-  			 
-  			 <!-- 차트를 위한 가격리스트 -->
-  			 <select id="price" resultType="int" parameterType="list">
-  	select count(*)
-         from movie
-         group by movie_price
-         order by movie_price asc
+ <!-- 영화 페이지에서 join을 하면서 검색할 때 사용하는 resultmap -->
+ <resultMap type="movievo" id="movievo">
+ 	<result column="movie_number property="movie_number"></result>
+		<중간생략>
+	<collection property="movietagvo" resultMap="movietagvo">
+	</collection>
+</resultmap>
+
+<select id="moviehashmap" resultMap="movietagvo" parameterType="hashmap">
+		select m.movie_number, m.movie_title, m.movie_price,m.movie_open_date, m.movie_purchase_date, m.movie_rating,m.movie_investment,
+		m.active_check_number,  t.tag_table_num,tt.tag_category_num, tt.tag_name
+		from movie m, movie_tag t, tag_table tt		
+			<where>
+				m.movie_number = t.movie_number
+				and t.tag_table_num = tt.tag_table_num
+				and tt.tag_category_num = 1	
+<!-- 				and m.movie_open_date  <![CDATA[ < ]]> ALL (select movie_open_date from movie where movie_open_date <![CDATA[ > ]]> sysdate) -->
+				<if test="search != null and search != ''">
+				<choose> 
+					<when test="searchType == 1">
+						and m.movie_title like '%' || #{search} || '%'
+					</when>
+					<when test="searchType == 2">
+						and m.active_check_number like '%' || #{search} || '%'
+					</when>
+					<otherwise></otherwise>
+				</choose>
+						</if>
+			</where>
+		order by 1 asc
+	</select> 
+</mapper>
+```
  
-</select>
- ```
 
+- 영화 가격 수정
 
+![image](https://user-images.githubusercontent.com/35910177/61342436-1badc300-a885-11e9-82d9-f6ac1963ed4b.png)
+
+관리자 페이지에서 영화 가격을 수정이 가능하게 구현하였습니다.
+
+영화 가격 수정 버튼을 누르고 영화번호와 영화가격을 입력한 후 수정하기 버튼을 누르면 DB에서 해당 영화에 대한 가격이 수정이 되도록 하였습니다.
+
+- 해당 코드 (일부)
+
+```
+// 영화 가격 수정 매핑
+@RequestMapping(value="update.do", method=RequestMethod.POST)
+public String update(@ModelAttribute MovieVO vo) throws Exception {
+	dao.updateprice(vo);
+	return "redirect:blank5";
+	}
+```
+```
+//영화 가격 수정시 사용됨
+public void updateprice(MovieVO vo){
+	ss.update("movie.update",vo);
+	}
+```
+```
+<!-- 영화 페이지에서 가격 수정을 위한 update -->
+<update id = "update" parameterType="movievo">
+update movie set movie_price =#{movie_price}
+where movie_number=#{movie_number}
+```
+
+- 영화 활성화상태 변경
+
+![image](https://user-images.githubusercontent.com/35910177/61342786-68de6480-a886-11e9-8397-51c88535aabc.png)
+
+관리자 페이지에서 영화 활성화 상태를 변경이 가능하게 구현하였습니다.
+
+영화 코드와 상태 코드를 입력한 후, 영화 활성화 상태를 변경하면 영화코드의 상태코드를 DB에서 변경이 가능하도록 구현하였습니다.
+
+- 해당 코드 (일부)
+
+```
+//DB의 Active_status_number 수정을 위한 Mapping
+@RequestMapping(value="updatestatus.do",method=RequestMethod.POST)
+public String updatestatus(@ModelAttribue MovieVO vo) throws Exception{
+	dao.updatestatus(vo);
+	return "redirect:blank5";
+	}
+```
+```
+//영화 active_check_number 수정을 위한 Update
+public void updates(MovieVO vo){
+	ss.update("movie.updatestatus",vo);
+	}
+```
+```
+<update id="updatestatus" parameterType="movievo">
+update movie set active_check_number = #{active_check_number}
+where movie_number=#{movie_number}
+```
 
 ### 4. Spring - R - DB  연동
 
@@ -197,7 +270,7 @@ WAFLIX 페이지에서 댓글을 가져와서 태그화를 해야하는 작업�
 
 
 
-- 해당 코드 (일부분)
+- 해당 코드 (일부)
 
 ```
 public class TagListDao {	
