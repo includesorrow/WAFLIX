@@ -90,7 +90,9 @@ _(사진 : 부트스트랩 UI)_
 ![SpringJSOUP](https://img.shields.io/badge/Spring-Jsoup-brightgreen.svg)
 ![SpringAOP](https://img.shields.io/badge/Spring-AOP-brightgreen.svg)
 
-- 영화 리스트
+- 영화 리스트 및 검색
+
+![g](https://user-images.githubusercontent.com/35910177/61347790-2c683400-a899-11e9-93bc-0e3646b600cb.png)
 
  현재 DB에 저장되어 있는 영화 리스트를 출력해주며, 검색기능을 넣어 DB에 있는 영화 검색이 가능하게 구현하였습니다.
  
