@@ -217,6 +217,47 @@ update movie set active_check_number = #{active_check_number}
 where movie_number=#{movie_number}
 ```
 
+- 영화 가격 전체 업데이트
+
+영화 가격 설정을 따로 설정하였습니다. 예시로는 다음과 같습니다.
+
+|개봉일로부터 지난 개월 수 |가격|
+|------|---|
+|~12개월이내|10000원|
+|12~24개월|5000원|
+|24~36개월|2500원|
+|36개월~|1000원|
+
+영화 가격은 매일 04:00 기준으로 자동으로 db에서 업데이트가 되지만, 만일에 있을 업데이트가 안되는 경우를 대비해 수동으로 업데이트하는 버튼을 따로 만들어 간편하게 영화 가격을 Update하는 방법을 구현하였습니다. 
+
+
+- 해당 코드 (일부)
+```
+@RequestMapping(value="moviepriceyearupdate.do",method=RequestMethod.POST)
+public String updatemoviepriceyear(@ModelAttribute MovieVO vo) throws Exception{
+	dao.updatemoviepriceyear();
+	return "redirect:blank5";
+	}
+```
+```
+public void updatemoviepriceyear(){
+	ss.update("movie.updateyearprice");
+	}
+```
+```
+<update id="updateyearprice" parameterType="movievo">
+update movie
+set movie_price=
+case
+when (months_between(sysdate,movie_purchase_Date)<![CDATA >=]]>48) then 1
+when (months_between(sysdate,movie_purchase_Date)<![CDATA >=]]>36) and months_between(sysdate, movie_purchase_date) <![CDATA[ < ]]>48 then 2
+when (months_between(sysdate,movie_purchase_Date)<![CDATA >=]]>24) and months_between(sysdate, movie_purchase_date) <![CDATA[ < ]]>36 then 3
+when (months_between(sysdate,movie_purchase_Date)<![CDATA >=]]>12) and months_between(sysdate, movie_purchase_date) <![CDATA[ < ]]>24 then 4
+else 5
+end
+</update>
+```
+
 ### 4. Spring - R - DB  연동
 
 구상도
